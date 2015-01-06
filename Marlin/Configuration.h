@@ -23,7 +23,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
-#define STRING_CONFIG_H_AUTHOR "(MakerFarm Inc, 8\" i3v Prusa, mjw)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(MakerFarm Inc i3v 8, mjw)" // Who made the changes.
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -86,7 +86,7 @@
 #endif
 
 // Define this to set a custom name for your generic Mendel,
-#define CUSTOM_MENDEL_NAME "MakerFarm i3v"
+#define CUSTOM_MENDEL_NAME "Wyrick i3v"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -407,10 +407,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
   #ifdef AUTO_BED_LEVELING_GRID
 
     // set the rectangle in which to probe
-    #define LEFT_PROBE_BED_POSITION 75
+    #define LEFT_PROBE_BED_POSITION 20
     #define RIGHT_PROBE_BED_POSITION 175
     #define BACK_PROBE_BED_POSITION 175
-    #define FRONT_PROBE_BED_POSITION 50
+    #define FRONT_PROBE_BED_POSITION 20
 
     // set the max number of grid points per dimension
     // The G29 command defaults to 3 if nothing is specified.  But setting the number of probed 
@@ -420,10 +420,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
     // Uncomment one of the following four lines so the Bed Topology Report can produce a map
     // that relates accurately to your bed orientation.  
 
-    #define ORIGIN_FRONT_LEFT
+    //#define ORIGIN_FRONT_LEFT
     //#define ORIGIN_BACK_LEFT
     //#define ORIGIN_FRONT_RIGHT
-    //#define ORIGIN_BACK_RIGHT
+    #define ORIGIN_BACK_RIGHT
 
   #else  // not AUTO_BED_LEVELING_GRID
     // with no grid, just probe 3 arbitrary points.  A simple cross-product
@@ -440,17 +440,17 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 
 
   // these are the offsets to the probe relative to the extruder tip (Hotend - Probe)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 31
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 1.6 
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER -7.84
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 19
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -12 
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -7.9
 
   #define Z_RAISE_BEFORE_HOMING 4       // (in mm) Raise Z before homing (G28) for Probe Clearance.
                                         // Be sure you have this distance over your Z_MAX_POS in case
 
   #define XY_TRAVEL_SPEED 4000         // X and Y axis travel speed between probes, in mm/min
 
-  #define Z_RAISE_BEFORE_PROBING 15    //How much the extruder will be raised before traveling to the first probing point.
-  #define Z_RAISE_BETWEEN_PROBINGS 5  //How much the extruder will be raised when traveling from between next probing points
+  #define Z_RAISE_BEFORE_PROBING 5    //How much the extruder will be raised before traveling to the first probing point.
+  #define Z_RAISE_BETWEEN_PROBINGS 3  //How much the extruder will be raised when traveling from between next probing points
 
   //#define Z_PROBE_SLED // turn on if you have a z-probe mounted on a sled like those designed by Charles Bell
   //#define SLED_DOCKING_OFFSET 5 // the extra distance the X axis must travel to pickup the sled. 0 should be fine but you can push it further if you'd like.
@@ -459,7 +459,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
   //The value is the delay to turn the servo off after powered on - depends on the servo speed; 300ms is good value, but you can try lower it.
   // You MUST HAVE the SERVO_ENDSTOPS defined to use here a value higher than zero otherwise your code will not compile.
 
-//  #define PROBE_SERVO_DEACTIVATION_DELAY 300
+#define PROBE_SERVO_DEACTIVATION_DELAY 300
 
 
 //If you have enabled the Bed Auto Leveling and are using the same Z Probe for Z Homing,
@@ -536,10 +536,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable EEPROM support
-#define EEPROM_SETTINGS
+//#define EEPROM_SETTINGS
 //to disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
 // please keep turned on if you can.
-#define EEPROM_CHITCHAT
+//#define EEPROM_CHITCHAT
 
 // Preheat Constant
 #define PLA_PREHEAT_HOTEND_TEMP 195 
@@ -771,7 +771,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // Use M206 command to correct for switch height offset to actual nozzle height. Store that setting with M500.
 //
 #define SERVO_ENDSTOPS {-1, -1, 0} // Servo index for X, Y, Z. Disable with -1
-#define SERVO_ENDSTOP_ANGLES {0,0, 0,0, 10, 90} // X,Y,Z Axis Extend and Retract angles
+#define SERVO_ENDSTOP_ANGLES {0,0, 0,0, 85, 10} // X,Y,Z Axis Extend and Retract angles
 
 #include "Configuration_adv.h"
 #include "thermistortables.h"
