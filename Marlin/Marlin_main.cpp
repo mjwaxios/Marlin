@@ -1586,7 +1586,7 @@ void process_commands()
             } else {
                 LCD_MESSAGEPGM(MSG_ZPROBE_OUT);
                 SERIAL_ECHO_START;
-                SERIAL_ECHOLNPGM(MSG_ZPROBE_OUT);
+                SERIAL_ECHOLNPGM(MSG_ZPROBE_OUT); 
             }
           }
         #endif
@@ -1597,11 +1597,18 @@ void process_commands()
       if(code_seen(axis_codes[Z_AXIS])) {
         if(code_value_long() != 0) {
           current_position[Z_AXIS]=code_value()+add_homeing[2];
+	  SERIAL_PROTOCOLPGM("<G28> Adding code_value = ");
+          SERIAL_PROTOCOL_F(code_value(),6);
+	  SERIAL_PROTOCOLPGM(" and add_homeing[2] = ");
+          SERIAL_PROTOCOL_F(add_homeing[2],6);
+          SERIAL_PROTOCOLPGM(" \n");
         }
       }
       #ifdef ENABLE_AUTO_BED_LEVELING
         if((home_all_axis) || (code_seen(axis_codes[Z_AXIS]))) {
           current_position[Z_AXIS] += zprobe_zoffset;  //Add Z_Probe offset (the distance is negative)
+	  SERIAL_PROTOCOLPGM("<G28> Current_position[Z_AXIS] = ");
+          SERIAL_PROTOCOL_F(current_position[Z_AXIS],6);
         }
       #endif
       plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);

@@ -86,7 +86,7 @@
 #endif
 
 // Define this to set a custom name for your generic Mendel,
-#define CUSTOM_MENDEL_NAME "Wyrick i3v"
+#define CUSTOM_MENDEL_NAME "i3v 8in"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -435,7 +435,6 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
       #define ABL_PROBE_PT_2_Y 20
       #define ABL_PROBE_PT_3_X 170
       #define ABL_PROBE_PT_3_Y 20
-
   #endif // AUTO_BED_LEVELING_GRID
 
 
@@ -542,12 +541,12 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 //#define EEPROM_CHITCHAT
 
 // Preheat Constant
-#define PLA_PREHEAT_HOTEND_TEMP 195 
+#define PLA_PREHEAT_HOTEND_TEMP 225 
 #define PLA_PREHEAT_HPB_TEMP 70
 #define PLA_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
 
-#define ABS_PREHEAT_HOTEND_TEMP 225
-#define ABS_PREHEAT_HPB_TEMP 110
+#define ABS_PREHEAT_HOTEND_TEMP 250
+#define ABS_PREHEAT_HPB_TEMP 90
 #define ABS_PREHEAT_FAN_SPEED 255   // Insert Value between 0 and 255
 
 //LCD and SD support
