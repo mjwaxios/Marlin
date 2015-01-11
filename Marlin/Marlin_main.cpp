@@ -1219,6 +1219,25 @@ static void homeaxis(int axis) {
 }
 #define HOMEAXIS(LETTER) homeaxis(LETTER##_AXIS)
 
+#ifdef MOVEAFTERHOME
+void moveafterhome() {
+  #ifdef X_MOVEAFTERHOME 
+  destination[X_AXIS] = X_MOVEAFTERHOME;
+  #endif
+  #ifdef Y_MOVEAFTERHOME 
+  destination[Y_AXIS] = Y_MOVEAFTERHOME;
+  #endif
+  #ifdef Z_MOVEAFTERHOME 
+  destination[Z_AXIS] = Z_MOVEAFTERHOME;
+  #endif
+  plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate/60, active_extruder);
+  st_synchronize();
+  current_position[X_AXIS] = destination[X_AXIS];
+  current_position[Y_AXIS] = destination[Y_AXIS];
+  current_position[Z_AXIS] = destination[Z_AXIS]; 
+}
+#endif
+
 void refresh_cmd_timeout(void)
 {
   previous_millis_cmd = millis();
@@ -1623,6 +1642,10 @@ void process_commands()
       feedmultiply = saved_feedmultiply;
       previous_millis_cmd = millis();
       endstops_hit_on_purpose();
+      
+      #ifdef MOVEAFTERHOME
+        moveafterhome();
+      #endif
       break;
 
 #ifdef ENABLE_AUTO_BED_LEVELING
@@ -1985,6 +2008,10 @@ int xx,yy;
 
 	    retract_z_probe();
         }
+        
+        #ifdef MOVEAFTERHOME
+          moveafterhome();
+        #endif
         break;
 
 #ifndef Z_PROBE_SLED
