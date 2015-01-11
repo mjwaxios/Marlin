@@ -481,6 +481,13 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 
 #endif // ENABLE_AUTO_BED_LEVELING
 
+// Move somewhere after G28 or G29 is finished
+#define MOVEAFTERHOME
+#ifdef MOVEAFTERHOME
+  #define X_MOVEAFTERHOME 0
+  #define Y_MOVEAFTERHOME 0
+  #define Z_MOVEAFTERHOME 10 
+#endif
 
 // The position of the homing switches
 //#define MANUAL_HOME_POSITIONS  // If defined, MANUAL_*_HOME_POS below will be used
