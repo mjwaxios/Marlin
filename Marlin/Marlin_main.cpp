@@ -1230,7 +1230,8 @@ void moveafterhome() {
   #ifdef Z_MOVEAFTERHOME 
   destination[Z_AXIS] = Z_MOVEAFTERHOME;
   #endif
-  plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate/60, active_extruder);
+  feedrate = XY_TRAVEL_SPEED;
+  plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate, active_extruder);
   st_synchronize();
   current_position[X_AXIS] = destination[X_AXIS];
   current_position[Y_AXIS] = destination[Y_AXIS];
@@ -1638,14 +1639,15 @@ void process_commands()
         enable_endstops(false);
       #endif
 
+      #ifdef MOVEAFTERHOME
+        moveafterhome();
+      #endif
+
       feedrate = saved_feedrate;
       feedmultiply = saved_feedmultiply;
       previous_millis_cmd = millis();
       endstops_hit_on_purpose();
       
-      #ifdef MOVEAFTERHOME
-        moveafterhome();
-      #endif
       break;
 
 #ifdef ENABLE_AUTO_BED_LEVELING
