@@ -1635,14 +1635,15 @@ void process_commands()
         enable_endstops(false);
       #endif
 
+      #ifdef MOVEAFTERHOME
+        moveafterhome();
+      #endif
+
       feedrate = saved_feedrate;
       feedmultiply = saved_feedmultiply;
       previous_millis_cmd = millis();
       endstops_hit_on_purpose();
       
-      #ifdef MOVEAFTERHOME
-        moveafterhome();
-      #endif
       break;
 
 #ifdef ENABLE_AUTO_BED_LEVELING
