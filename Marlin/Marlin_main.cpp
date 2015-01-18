@@ -1230,9 +1230,11 @@ void moveafterhome() {
   #ifdef Z_MOVEAFTERHOME 
   destination[Z_AXIS] = Z_MOVEAFTERHOME;
   #endif
+  int oldfeedrate = feedrate;
   feedrate = XY_TRAVEL_SPEED;
-  plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate, active_extruder);
+  plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate/60, active_extruder);
   st_synchronize();
+  feedrate=oldfeedrate;
   current_position[X_AXIS] = destination[X_AXIS];
   current_position[Y_AXIS] = destination[Y_AXIS];
   current_position[Z_AXIS] = destination[Z_AXIS]; 
