@@ -729,7 +729,7 @@
     #endif
 
     #if NUM_SERVOS > 2
-      #define SERVO2_PIN         5
+      #define SERVO2_PIN         -1
     #endif
 
     #if NUM_SERVOS > 3
